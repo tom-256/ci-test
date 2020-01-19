@@ -6,5 +6,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: ./.github/actions/setup
-      - uses: ./.github/actions/lhci
+      - uses: ../actions/setup
+      - uses: ../actions/lhci
