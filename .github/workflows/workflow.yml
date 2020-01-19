@@ -10,8 +10,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
-      - name: npm run build
-        run: npm run build
+      - name: npm install & run build
+        run: |
+          npm i 
+          npm run build
   lhci:
     name: Lighthouse CI
     runs-on: ubuntu-latest
