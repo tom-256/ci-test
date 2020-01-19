@@ -11,7 +11,6 @@ jobs:
           node-version: 10.x
       - name: npm run build
         run: npm run build
-jobs:
   lhci:
     name: Lighthouse CI
     runs-on: ubuntu-latest
