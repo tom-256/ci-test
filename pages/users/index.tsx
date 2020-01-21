@@ -10,7 +10,7 @@ type Props = {
   items: User[];
   pathname: string;
 };
-console.log("hoge");
+
 const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
   <Layout title="Users List | Next.js + TypeScript Example">
     <h1>Users List</h1>
