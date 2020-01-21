@@ -20,5 +20,6 @@ jobs:
           lhci autorun --config=./lighthouseci/.lighthouserc.json --upload.target=temporary-public-storage || echo "LHCI failed!"
       - name: spell check
         run: |
-          &files git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
-          exec npx cspell -- --no-summary *files
+          files=$(git diff --cached --name-only)
+          exec npx cspell -- --no-summary $files
+        shell: bash

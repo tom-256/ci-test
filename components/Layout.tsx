@@ -11,7 +11,6 @@ const Layout: React.FunctionComponent<Props> = ({
   title = 'This is the default title',
 }) => (
   <div>
-    <div>test</div>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
