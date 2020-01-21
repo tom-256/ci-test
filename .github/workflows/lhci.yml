@@ -18,3 +18,8 @@ jobs:
         run: |
           npm install -g @lhci/cli@0.3.x
           lhci autorun --config=./lighthouseci/.lighthouserc.json --upload.target=temporary-public-storage || echo "LHCI failed!"
+      - name: spell check
+        run: |
+          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -e .ts -e .tsx)
+          exec npx cspell -- --no-summary $files
+        shell: bash
