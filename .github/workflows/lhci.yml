@@ -16,6 +16,8 @@ jobs:
           npm run build
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v2
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
         with:
           urls: |
             http://localhost:3000/
