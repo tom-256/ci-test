@@ -14,12 +14,20 @@ jobs:
         run: |
           npm install
           npm run build
-      - name: run Lighthouse CI
-        run: |
-          npm install -g @lhci/cli@0.3.x
-          lhci autorun --config=./lighthouseci/.lighthouserc.json --upload.target=temporary-public-storage || echo "LHCI failed!"
-      - name: spell check
-        run: |
-          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -e .ts -e .tsx)
-          exec npx cspell -- --no-summary $files
-        shell: bash
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v2
+        with:
+          urls: |
+            http://localhost:3000/
+          configPath: ".github/lighthouse/.lighthouserc.json"
+          budgetPath: ".github/lighthouse/budget.json"
+      - name: Save results
+        uses: actions/upload-artifact@v1
+        with:
+          name: lighthouse-results
+          path: ".lighthouseci" # This will save the Lighthouse results as .json files
+#      - name: spell check
+#        run: |
+#          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -e .ts -e .tsx)
+#          exec npx cspell -- --no-summary $files
+#        shell: bash
