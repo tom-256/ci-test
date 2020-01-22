@@ -19,8 +19,8 @@ jobs:
         with:
           urls: |
             http://localhost:3000/
-          configPath: ".github/lighthouseci/.lighthouserc.json"
-          budgetPath: ".github/lighthouseci/budget.json"
+          configPath: ".github/lighthouse/.lighthouserc.json"
+          budgetPath: ".github/lighthouse/budget.json"
       - name: Save results
         uses: actions/upload-artifact@v1
         with:
