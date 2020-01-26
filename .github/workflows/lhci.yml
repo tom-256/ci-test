@@ -20,10 +20,10 @@ jobs:
           lhci autorun --config=.github/lighthouse/.lighthouserc.json --upload.target=temporary-public-storage || echo "LHCI failed!"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-      - name: spell check
-        run: |
-          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -e .ts -e .tsx)
-          if [ "$files" ]; then
-            npx cspell -- --no-summary $files
-          fi
-        shell: bash
+#      - name: spell check
+#        run: |
+#          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -e .ts -e .tsx)
+#          if [ "$files" ]; then
+#            npx cspell -- --no-summary $files
+#          fi
+#        shell: bash
