@@ -22,7 +22,7 @@ jobs:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       - name: spell check
         run: |
-          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha } | grep -e .ts -e .tsx} 
+          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -e .ts -e .tsx)
           if [ "$files" ]; then
             npx cspell -- --no-summary $files
           fi
