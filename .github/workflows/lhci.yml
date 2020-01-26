@@ -20,13 +20,9 @@ jobs:
           lhci autorun --config=.github/lighthouse/.lighthouserc.json --upload.target=temporary-public-storage || echo "LHCI failed!"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-#      - name: Save results
-#        uses: actions/upload-artifact@v1
-#        with:
-#          name: lighthouse-results
-#          path: ".lighthouseci" # This will save the Lighthouse results as .json files
-#      - name: spell check
-#        run: |
-#          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -e .ts -e .tsx)
-#          exec npx cspell -- --no-summary $files
-#        shell: bash
+      - name: spell check
+        run: |
+          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -e .ts -e .tsx)
+          exec npx cspell -- --no-summary $files
+        if: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+        shell: bash
